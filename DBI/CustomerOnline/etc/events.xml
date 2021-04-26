@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer name="customer_login_observer" instance="DBI\CustomerOnline\Observer\CustomerLogin" />
+    </event>
+    <event name="customer_logout">
+        <observer name="customer_logout_observer" instance="DBI\CustomerOnline\Observer\CustomerLogout" />
+    </event>
+</config>

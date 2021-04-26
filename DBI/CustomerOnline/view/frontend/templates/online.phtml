@@ -1,0 +1,38 @@
+<?php
+
+/** @var $block \DBI\CustomerOnline\Block\Online */
+$viewModel = $block->getViewModel();
+/** @var \DBI\CustomerOnline\ViewModel\CustomerOnline */
+?>
+<?php if ($viewModel->isLoggedIn()): ?>
+    <div class="customer-welcome" style="float: right;margin-left: 10px">
+        <p
+            data-mage-init='{"dropdown":{}}'
+            data-toggle="dropdown"
+            class="action online-select"
+            data-action="customer-menu-toggle">
+            <span class="online-status-value"><?= $block->escapeHtml(__($viewModel->getCustomerOnlineStatus())) ?></span>
+        </p>
+        <ul data-target="dropdown" class="dropdown-options">
+            <?php foreach ($viewModel->getConfigData() as $option): ?>
+             <li>
+                <span class="item online_status"><a class="online_status_option" href="#"><?= $option ?></a></span>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "example-scope": {
+                    "component": "DBI_CustomerOnline/js/online"
+                   }
+            }
+        }
+    }
+}
+</script>
