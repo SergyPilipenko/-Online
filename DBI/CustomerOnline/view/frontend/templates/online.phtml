@@ -4,14 +4,17 @@
 $viewModel = $block->getViewModel();
 /** @var \DBI\CustomerOnline\ViewModel\CustomerOnline */
 ?>
-<?php if ($viewModel->isLoggedIn()): ?>
-    <div class="customer-welcome" style="float: right;margin-left: 10px">
+
+    <div class="customer-welcome"  style="float: right;margin-left: 10px">
         <p
             data-mage-init='{"dropdown":{}}'
             data-toggle="dropdown"
             class="action online-select"
-            data-action="customer-menu-toggle">
-            <span class="online-status-value"><?= $block->escapeHtml(__($viewModel->getCustomerOnlineStatus())) ?></span>
+            data-action="customer-menu-toggle"
+            data-bind="scope: 'example-scope'">
+            <span class="online-status-value"
+                  data-bind="text: customSection().status,visible:customSection().isLoggedIn" >
+            </span>
         </p>
         <ul data-target="dropdown" class="dropdown-options">
             <?php foreach ($viewModel->getConfigData() as $option): ?>
@@ -21,7 +24,7 @@ $viewModel = $block->getViewModel();
             <?php endforeach; ?>
         </ul>
     </div>
-<?php endif; ?>
+
 
 <script type="text/x-magento-init">
 {
